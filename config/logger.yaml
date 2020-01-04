@@ -1,0 +1,43 @@
+version: 1
+disable_existing_loggers: False
+formatters:
+    simple:
+        format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+handlers:
+    console:
+        class: logging.StreamHandler
+        level: DEBUG
+        formatter: simple
+        stream: ext://sys.stdout
+
+    debug_file_handler:
+        class: logging.handlers.RotatingFileHandler
+        level: DEBUG
+        formatter: simple
+        filename: log.log
+        maxBytes: 5000000 # 5MB
+        backupCount: 0
+        encoding: utf8
+
+
+root:
+    level: ERROR
+    handlers: [console]
+
+loggers:
+  "app":
+    level: DEBUG
+    handlers: [debug_file_handler]
+  "dbo":
+      level: DEBUG
+      handlers: [debug_file_handler]
+  "admin_forms":
+      level: DEBUG
+      handlers: [debug_file_handler]
+  "flask-admin":
+      level: DEBUG
+      handlers: [debug_file_handler]
+  "flask-admin.peewee":
+      level: DEBUG
+      handlers: [debug_file_handler]

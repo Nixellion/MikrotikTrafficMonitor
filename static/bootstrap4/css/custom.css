@@ -1,0 +1,248 @@
+body {
+	font-family: 'Open Sans', sans-serif;
+}
+
+.padding-y-5 {
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.tag-badge-main {
+    border-radius: 0px;
+
+    padding: 5px;
+
+    font-size: 15px;
+
+    margin: 10px 0px 10px 0px;
+
+    background-color: #c1c1c100;
+
+
+}
+
+.tag-badge-secondary {
+    border-radius: 0px;
+
+    padding: 5px;
+
+    font-size: 15px;
+
+    margin: 10px 0px 10px 0px;
+
+    background-color: #c1c1c100;
+
+    color: #ffffff78;
+}
+
+#preloader {
+ position: fixed;
+ left: 0;
+ top: 0;
+ z-index: 99999;
+ width: 100%;
+ height: 100%;
+ overflow: visible;
+ background-color: rgb(30,30,30); }
+#preloader-container {
+ margin: 0;
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ margin-right: -50%;
+ transform: translate(-50%, -50%); }
+
+
+
+a.custom-card,
+a.custom-card:hover {
+  color: inherit;
+}
+
+.tinted { opacity: 0.2; }
+
+
+a {
+color: #faa300;
+}
+
+.about-section {
+    margin-top: 30px;
+
+}
+
+.about-top-border {
+    border-top: 1px rgba(255,255,255,0.1) solid;
+}
+
+.bro_darker {
+    background-color: rgb(0, 0, 0, 0.4);
+    color: rgb(200, 200, 200);
+}
+
+.bro_shadow_slight {
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 2px 2px;
+}
+
+
+.portfolio_item {
+   /*
+    width: 300px;
+    height: 300px;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    */
+}
+
+.portfolio_img {
+    width: 512px;
+    height: 512px;
+}
+
+
+.navbar-dark .navbar-nav .nav-link {
+
+    font-size: 18px;
+    color: white;
+    border-bottom: 1px rgba(0,0,0,0) solid;
+    -webkit-transition: all 0.15s ease-in-out;
+    transition: all 0.15s ease-in-out;
+
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+
+    border-bottom: 1px white solid;
+
+}
+
+
+/* HOVER EFFECT FOR GALLERY */
+.hovereffect {
+width:100%;
+height:100%;
+float:left;
+overflow:hidden;
+position:relative;
+text-align:center;
+cursor:default;
+}
+
+.hovereffect .overlay {
+width:100%;
+height:100%;
+position:absolute;
+overflow:hidden;
+top:0;
+left:0;
+opacity:0;
+background-color:rgba(0,0,0,0.5);
+-webkit-transition:all .4s ease-in-out;
+transition:all .4s ease-in-out
+}
+
+.hovereffect img {
+display:block;
+position:relative;
+-webkit-transition:all .4s linear;
+transition:all .4s linear;
+}
+
+.hovereffect h2 {
+text-transform:uppercase;
+color:#fff;
+text-align:center;
+position:relative;
+font-size:17px;
+background:rgba(0,0,0,0.6);
+-webkit-transform:translatey(-100px);
+-ms-transform:translatey(-100px);
+transform:translatey(-100px);
+-webkit-transition:all .2s ease-in-out;
+transition:all .2s ease-in-out;
+padding:10px;
+}
+
+.hovereffect a.info {
+text-decoration:none;
+display:inline-block;
+text-transform:uppercase;
+color:#fff;
+border:1px solid #fff;
+background-color:transparent;
+opacity:0;
+filter:alpha(opacity=0);
+-webkit-transition:all .2s ease-in-out;
+transition:all .2s ease-in-out;
+margin:50px 0 0;
+padding:7px 14px;
+}
+
+.hovereffect a.info:hover {
+box-shadow:0 0 5px #fff;
+}
+
+.hovereffect:hover img {
+-ms-transform:scale(1.2);
+-webkit-transform:scale(1.2);
+transform:scale(1.2);
+}
+
+.hovereffect:hover .overlay {
+opacity:1;
+filter:alpha(opacity=100);
+}
+
+.hovereffect:hover h2,.hovereffect:hover a.info {
+opacity:1;
+filter:alpha(opacity=100);
+-ms-transform:translatey(0);
+-webkit-transform:translatey(0);
+transform:translatey(0);
+}
+
+.hovereffect:hover a.info {
+-webkit-transition-delay:.2s;
+transition-delay:.2s;
+}
+
+.img-preloader {
+     background: linear-gradient(213deg, rgba(0,0,0,0), rgba(255,255,255,0.1), rgba(0,0,0,0));
+    background-size: 400% 400%;
+
+    -webkit-animation: imgpreloader 5s ease infinite;
+    -moz-animation: imgpreloader 5s ease infinite;
+    animation: imgpreloader 5s ease infinite;
+}
+
+
+
+@-webkit-keyframes imgpreloader {
+    0%{background-position:99% 0%}
+    50%{background-position:2% 100%}
+    100%{background-position:99% 0%}
+}
+@-moz-keyframes imgpreloader {
+    0%{background-position:99% 0%}
+    50%{background-position:2% 100%}
+    100%{background-position:99% 0%}
+}
+@keyframes imgpreloader {
+    0%{background-position:99% 0%}
+    50%{background-position:2% 100%}
+    100%{background-position:99% 0%}
+}
+
+a {
+    -webkit-transition: all 0.15s ease-in-out;
+    transition: all 0.15s ease-in-out;
+}
+
+a:hover {
+    color: white;
+    text-decoration: none;
+}

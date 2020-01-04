@@ -1,0 +1,10 @@
+[Unit]
+Description=MikrotikTrafficMonitor
+
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /opt/MikrotikTrafficMonitor/app.py
+
+[Install]
+WantedBy=multi-user.target

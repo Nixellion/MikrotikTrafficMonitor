@@ -1,0 +1,6 @@
+general:
+  router_ip: 192.168.88.1
+  interval: 5
+  PORT: 3011
+  bootswatch_theme: cyborg
+  keep_months: 12
