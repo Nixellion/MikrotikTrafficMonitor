@@ -105,7 +105,6 @@ class MonthlyArchive(Model):
 
     @property
     def this_month(self):
-        print ("RUN CYKA!")
         sel = self.select().where((MonthlyArchive.year == datetime.utcnow().year) & (MonthlyArchive.month == datetime.utcnow().month))
         return sel
 
