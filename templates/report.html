@@ -3,6 +3,9 @@
 {% block body_contents %}
 <h2>Report:</h2>
 
+<h2>This month download:  {{(Accounting().this_month[0]/(1024*1024*1024))|round(3)}} GB</h2>
+<h2>This month upload:  {{(Accounting().this_month[1]/(1024*1024*1024))|round(3)}} GB</h2>
+
 <ul class="list-group">
     {% for data in Accounting.select(Accounting.address, fn.strftime('%Y-%m-%d', Accounting.date).alias('date'),
     fn.sum(Accounting.download).alias('download'),
@@ -13,8 +16,8 @@
         <div class="row">
             <div class="col">{{data.date}}</div>
             <div class="col">{{data.address}}</div>
-            <div class="col">{{(data.download/1000000)|round(1)}} MB</div>
-            <div class="col">{{(data.upload/1000000)|round(1)}} MB</div>
+            <div class="col">{{(data.download/(1024*1024*1024))|round(3)}} GB</div>
+            <div class="col">{{(data.upload/(1024*1024*1024))|round(3)}} GB</div>
         </div>
 
 

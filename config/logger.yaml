@@ -15,7 +15,7 @@ handlers:
         class: logging.handlers.RotatingFileHandler
         level: DEBUG
         formatter: simple
-        filename: log.log
+        filename: dashboard.log
         maxBytes: 5000000 # 5MB
         backupCount: 0
         encoding: utf8
@@ -23,21 +23,9 @@ handlers:
 
 root:
     level: ERROR
-    handlers: [console]
+    handlers: [debug_file_handler]
 
 loggers:
-  "app":
-    level: DEBUG
-    handlers: [debug_file_handler]
-  "dbo":
-      level: DEBUG
-      handlers: [debug_file_handler]
-  "admin_forms":
-      level: DEBUG
-      handlers: [debug_file_handler]
-  "flask-admin":
-      level: DEBUG
-      handlers: [debug_file_handler]
-  "flask-admin.peewee":
-      level: DEBUG
-      handlers: [debug_file_handler]
+  "default":
+    level: INFO
+    handlers: [debug_file_handler, console]

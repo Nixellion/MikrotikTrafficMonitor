@@ -1,6 +1,8 @@
-general:
-  router_ip: 192.168.88.1
-  interval: 5
-  PORT: 3011
-  bootswatch_theme: cyborg
-  keep_months: 12
+database_migrate: False
+host: 0.0.0.0
+port: 1234
+template: adminlte
+project_name: MikrotiKTrafficMonitor
+router_ip: 192.168.1.1
+interval: 5
+keep_months: 12

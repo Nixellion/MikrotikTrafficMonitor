@@ -1,0 +1,74 @@
+{% extends config['template']+"/base.html" %}
+
+{% set page_title = "Stats" %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-12 col-md-6">
+        <div class="info-box">
+            <span class="info-box-icon bg-info elevation-1"><i class="fas fa-download"></i></span>
+
+            <div class="info-box-content">
+
+                <span class="info-box-number">
+                    <h2>{{(Accounting().this_month[0]/(1024*1024*1024))|round(3)}} GB</h2>
+                </span>
+            </div>
+            <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+    </div>
+
+    <div class="col-12 col-md-6">
+        <div class="info-box">
+            <span class="info-box-icon bg-info elevation-1"><i class="fas fa-upload"></i></span>
+
+            <div class="info-box-content">
+
+                <span class="info-box-number">
+                    <h2>{{(Accounting().this_month[1]/(1024*1024*1024))|round(3)}} GB</h2>
+                </span>
+            </div>
+            <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col">
+
+        <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Monthly usage per client</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                  <thead>
+                    <tr>
+                      <th>IP</th>
+                      <th>Download</th>
+                      <th>Upload</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for data in MonthlyArchive().this_month %}
+                    <tr>
+                      <td>{{data.address}}</td>
+                      <td>{{(data.download/(1024*1024*1024))|round(3)}} GB</td>
+                      <td>{{(data.upload/(1024*1024*1024))|round(3)}} GB</td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+
+    </div>
+
+</div>
+{% endblock %}

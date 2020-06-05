@@ -1,71 +1,86 @@
-#!/usr/bin/python3
-# -*- coding: utf-8 -*-
-import eventlet
+'''
+Main application file
+'''
 
+import eventlet
 eventlet.monkey_patch()
 
-from datetime import datetime
-
-import pytz
-
-from flask import Flask, url_for, Response, render_template
-
+from flask import Flask, Response, render_template, Markup, request, redirect
 from flask_socketio import SocketIO
 
-from dbo import Accounting, config, cleanup_database_loop
-from peewee import fn
-
-from collector import Collector
+from datetime import datetime
+import dbo
 
 # region Logger
 import logging
 from debug import setup_logging
 
-log = logger = logging.getLogger("app")
+log = logger = logging.getLogger("default")
 setup_logging()
 # endregion
 
-app = Flask(__name__)
-app.config.from_object(__name__)
+from configuration import read_config
+import jinja_filters
+from peewee import fn
 
-socketio = SocketIO(app)
+config = read_config()
+
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'BLAAAA_GeneerateMeDynamicallyForBetterSecurity'
+
+socketio = SocketIO(app, async_mode='eventlet')
+
+
+app.jinja_env.filters['html_line_breaks'] = jinja_filters.html_line_breaks
 
 
 @app.context_processor
 def inject_global_variables():
     return dict(
-        Accounting=Accounting,
         config=config,
         now=datetime.utcnow(),
+        Accounting=dbo.Accounting,
+        MonthlyArchive=dbo.MonthlyArchive,
         fn=fn
     )
 
-@app.route("/")
-def index():
-    return render_template("report.html")
 
-def main():
-    c = Collector()
-    socketio.start_background_task(c.collect)
-    socketio.start_background_task(cleanup_database_loop)
-    socketio.run(app, debug=False, host='0.0.0.0', port=config("general", "PORT"))
+def add_background_task(task, interval):
+    def tsk():
+        while True:
+            try:
+                log.debug(f"Running background task {task.__name__}...")
+                task()
+                log.debug(f"Completed background task {task.__name__}!")
+            except Exception as e:
+                log.error(f"Can't run background task '{task.__name__}': {e}", exc_info=True)
+            socketio.sleep(interval)
+
+    socketio.start_background_task(tsk)
 
 
 if __name__ == '__main__':
-    main()
-    '''
-    q = Accounting.select(Accounting.address, fn.strftime('%Y-%m', Accounting.date).alias('month'), fn.SUM(Accounting.download).alias('download'), fn.SUM(Accounting.upload).alias('upload')).group_by(Accounting.address, 'month').distinct()
-    print (q)
-    for a in q:
-        print (a.address, a.month, a.download/1000000, a.upload/1000000)
+    from collector import Collector
+    c = Collector(config['router_ip'])
+
+    add_background_task(c.collect, config['interval'])
+    add_background_task(dbo.cleanup_database, 6 * 60 * 60)
+    config = read_config()
+
+    from views import app as views
+    from api import app as api
+    app.register_blueprint(views)
+    app.register_blueprint(api)
+
+    try:
+        if config['host'] == "0.0.0.0":
+            host = 'localhost'
+        else:
+            host = config['host']
+        log.info(f"Running at http://{host}:{config['port']}")
+        socketio.run(app, debug=False, host=config['host'], port=config['port'])
+    except:
+        print("Unable to start", exc_info=True)
 
 
-    q = Accounting.select()
-    s = 0
-    for a in q:
 
-        if a.address == '192.168.88.244':
-            print (a.address, a.date, a.download/1000000, a.upload/1000000)
-            s += a.download
-    print ("SUM", s)
-    '''
