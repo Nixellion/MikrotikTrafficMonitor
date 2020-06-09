@@ -32,7 +32,7 @@ socketio = SocketIO(app, async_mode='eventlet')
 
 
 app.jinja_env.filters['html_line_breaks'] = jinja_filters.html_line_breaks
-
+app.jinja_env.filters['zfill'] = jinja_filters.zfill
 
 @app.context_processor
 def inject_global_variables():

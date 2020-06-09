@@ -3,7 +3,6 @@ flask-socketio
 eventlet
 pyyaml
 peewee
-playhouse
 flask-admin
 pytz
 requests

@@ -9,6 +9,7 @@ from debug import catch_errors_html
 from paths import APP_DIR
 from bro_utils import render_template_themed
 from configuration import read_config
+from dbo import MonthlyArchive
 config = read_config()
 
 app = Blueprint("views", __name__)
@@ -16,8 +17,20 @@ app = Blueprint("views", __name__)
 @app.route("/")
 @catch_errors_html
 def index():
-    return render_template_themed("index.html", some_variable=APP_DIR)
+    return render_template_themed("index.html")
 
+
+@app.route("/months")
+@catch_errors_html
+def months():
+    month = request.args.get("month", None)
+
+    if month == None:
+        query = MonthlyArchive.select()
+    else:
+        query = MonthlyArchive.select().where(MonthlyArchive.month == int(month))
+
+    return render_template_themed("months.html", query=query)
 # @app.route("/download/<var1>/<var2>")
 # @catch_errors_html
 # def dl(var1, var2):

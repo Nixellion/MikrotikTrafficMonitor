@@ -129,3 +129,5 @@ dmypy.json
 *.log
 data/database.db-shm
 data/database.db-wal
+data/database.db-shm
+data/database.db-wal
