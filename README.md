@@ -17,7 +17,7 @@ apt install python3 python3-pip python3-dev
 cd MikrotikTrafficMonitor
 pip3 install -r requirements.txt
 cp MikrotikTrafficMonitor.service /lib/systemd/system
-ssytemctl daemon-reload
+systemctl daemon-reload
 systemctl enable MikrotikTrafficMonitor
 service MikrotikTrafficMonitor start
 systemctl status MikrotikTrafficMonitor
