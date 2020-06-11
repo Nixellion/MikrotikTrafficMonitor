@@ -26,9 +26,11 @@ class Collector(object):
             src, dst, b, p, su, du = l.split()
             if src.startswith(self.local_network):  # upload
                 k = src
-            else:  # download
+            elif dst.startswith(self.local_network):
                 k = dst
                 is_upload = False
+            else:
+                continue
 
             if k not in data_collector:
                 data_collector[k] = [0, 0]
