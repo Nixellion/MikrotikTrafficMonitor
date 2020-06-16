@@ -7,4 +7,6 @@ flask-admin
 pytz
 requests
 python-dateutil
+RouterOS-api
+speedtest-cli
 
