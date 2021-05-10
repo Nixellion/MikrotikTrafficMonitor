@@ -1,3 +1,7 @@
+```
+Project is not actively maintained but open for any PRs if they merge without errors :)
+```
+
 # Mikrotik Traffic Monitor
 
 Mikrotik Traffic Monitor is a relatively small and lightweight server-side
