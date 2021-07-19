@@ -1,6 +1,6 @@
-```
-Project is not actively maintained but open for any PRs if they merge without errors :)
-```
+# This project is unmaintained and abandoned. A better simple solution is to use the following set of scripts: https://forum.mikrotik.com/viewtopic.php?t=168427
+
+https://forum.mikrotik.com/viewtopic.php?t=168427 these will run directly on your router and you can view bandwidth, traffic and current rate in realtime. As it is it resets counters for devices when they reconnect to the network, but that part of the script can be adjusted. 
 
 # Mikrotik Traffic Monitor
 
